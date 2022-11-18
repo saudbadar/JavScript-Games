@@ -11,33 +11,21 @@ let gameFrame = 0;
 class Enemy {
     constructor(){
         this.image = new Image();
-        this.image.src = 'enemy4.png';
+        this.image.src = 'enemy1.png';
         this.size = Math.random() + 2;
-        this.speed = (Math.random() * 4) + 1;
-        this.spriteWidth = 213;
-        this.spriteHeight = 213;
+        // this.speed = (Math.random() * 4) - 2
+        this.spriteWidth = 293;
+        this.spriteHeight = 155;
         this.width = this.spriteWidth / this.size;
         this.height = this.spriteHeight / this.size;
         this.x = Math.random() * (canvas.width - this.width);
         this.y = Math.random() * (canvas.height - this.height);
-        this.newX = Math.random() * (canvas.width - this.width);
-        this.newY = Math.random() * (canvas.height - this.height);
         this.frame = 0
         this.flapSpeed = Math.floor(Math.random() * 3 + 1);
-        this.interval = Math.floor(Math.random() * 200 + 50);
     }
     update(){
-        if(gameFrame % this.interval == 0){
-            this.newX = Math.random() * (canvas.width - this.width);
-            this.newY = Math.random() * (canvas.height - this.height);
-        }
-        let dx = this.x - this.newX;
-        let dy = this.y - this.newY
-        this.x -= dx/70;
-        this.y -= dy/70;
-        // this.x = 0;
-        // this.y = 0;
-        if(this.x + this.width < 0) this.x = canvas.width;
+        this.x += Math.random() * 15 - 7.5;
+        this.y += Math.random() * 10 - 5;
         // animate sprites
         if(gameFrame % this.flapSpeed == 0){
             this.frame > 4 ? this.frame = 0 : this.frame++;
